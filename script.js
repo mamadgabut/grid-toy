@@ -23,7 +23,7 @@ const grid = document.getElementById('grid');
     cell.className = 'cell';
 
 if (Math.random() < INVERT_PROBABILITY) {
-   cell.classes.add("black");
+   cell.classList.add("black");
 }
      
     // Handle both click and drag events
