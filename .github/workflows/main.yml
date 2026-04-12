@@ -1,0 +1,17 @@
+name: Learn GitHub Actions
+on: [push] # Akan berjalan setiap kali Anda melakukan push/commit
+
+jobs:
+  check-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cek koneksi ke Token
+        env:
+          MY_TOKEN_ACCESS: ${{ secrets.MY_TOKEN }} # Memanggil secret yang Anda buat tadi
+        run: |
+          if [ -n "$MY_TOKEN_ACCESS" ]; then
+            echo "Berhasil: Secret MY_TOKEN terdeteksi!"
+          else
+            echo "Gagal: Secret MY_TOKEN tidak ditemukan."
+            exit 1
+          fi
