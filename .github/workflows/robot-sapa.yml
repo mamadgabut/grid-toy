@@ -1,0 +1,23 @@
+name: Robot Penyapa Otomatis
+on:
+  issues:
+    types: [opened] # Robot ini cuma bangun kalau ada Issue baru dibuka
+
+jobs:
+  nyapa:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ngasih Komentar
+        uses: actions/github-script@v6
+        with:
+          # DISINI KEGUNAAN SECRET-NYA:
+          # Kita kasih tau robot: "Ini kunci buat masuk ke akun gue, ambil di brankas ya"
+          github-token: ${{ secrets.MY_SECRET_TOKEN }} 
+          
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Halo @' + context.actor + '! Gue robot asisten lu. Makasih ya udah buka issue ini. Lu keren! 🚀'
+            })
