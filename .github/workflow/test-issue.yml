@@ -1,0 +1,21 @@
+name: Test Issue Access
+on:
+  issues:
+    types: [opened] # Action ini jalan cuma kalau ada Issue baru yang dibuka
+
+jobs:
+  tambah-komentar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kirim komentar otomatis
+        uses: actions/github-script@v6
+        with:
+          # Menggunakan MY_TOKEN yang Anda simpan di Secrets tadi
+          github-token: ${{ secrets.MY_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Halo! Token MY_TOKEN berhasil digunakan. Komentar ini dibuat otomatis oleh GitHub Actions! 🚀'
+            })
