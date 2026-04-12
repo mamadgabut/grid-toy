@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Cek koneksi ke Token
         env:
-          MY_TOKEN_ACCESS: ${{ secrets.MY_TOKEN }} # Memanggil secret yang Anda buat tadi
+          MY_TOKEN_ACCESS: ${{ secrets.MY_SECRET_TOKEN }} # Memanggil secret yang Anda buat tadi
         run: |
           if [ -n "$MY_TOKEN_ACCESS" ]; then
             echo "Berhasil: Secret MY_TOKEN terdeteksi!"
