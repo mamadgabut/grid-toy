@@ -1,0 +1,19 @@
+name: Belajar Rahasia GitHub
+on: [push] # Jalan setiap kali lu klik commit
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil data dari brankas
+        env:
+          # Pastikan MY_SECRET_TOKEN ini sama dengan yang ada di Settings > Secrets lu
+          KUNCI_SAYA: ${{ secrets.MY_SECRET_TOKEN }} 
+        run: |
+          if [ -z "$KUNCI_SAYA" ]; then
+            echo "Waduh, brankasnya kosong atau namanya salah!"
+            exit 1
+          else
+            echo "Mantap! GitHub berhasil ambil isi brankas tanpa kasih tau isinya ke publik."
+            echo "Status: Berhasil Terkoneksi."
+          fi
